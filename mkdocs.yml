@@ -1,0 +1,30 @@
+site_name: Jeapie - Push Notification as a Service
+pages:
+    - [index.md, Home]
+    - [Getting-Started.md, Getting Started]
+
+    # - [iOS/iOS-Native-SDK-Overview.md, iOS, iOS Native SDK Overview]
+    # - [iOS/Generating-an-iOS-Push-Certificate.md, iOS, Generating an iOS Push Certificate]
+    # - [iOS/iOS-Native-SDK-Installation.md, iOS, iOS Native SDK Installation]
+    # - [iOS/iOS-Native-SDK-API.md, iOS, iOS Native SDK API]
+
+    - [Android/Android-Native-SDK-Overview.md, Android, Android Native SDK Overview]
+    - [Android/Android-Generating-a-GCM-Push-Notification-Key.md, Android, Android - Generating a GCM Push Notification Key]
+    - [Android/Android-Native-SDK-Installation.md, Android, Android Native SDK Installation]
+    #- [Android/Android-Native-SDK-API.md, Android, Android Native SDK API]
+    #- [Android/Android-Notification-Customizations.md, Android, Android Notification Customizations]
+
+    - [Websdk/Website-SDK-Overview.md, Website sdk, Website SDK Overview]
+    # - [Websdk/Website-Generating-a-GCM-Push-Notification-Key.md, Website sdk, Website - Generating a GCM Push Notification Key]
+    - [Websdk/Website-SDK-HTTPS-Installation.md, Website sdk, Website SDK HTTPS Installation]
+    - [Websdk/Website-SDK-HTTP-Installation.md, Website sdk, Website SDK HTTP Installation]
+    - [Websdk/Website-SDK-API.md, Website sdk, Website SDK API]
+
+    - [API/Server-API-Overview.md, SERVER API, Server API Overview]
+    #- [API/notifications-View-notifications.md, SERVER API, notifications (View notifications)]
+    #- ["API/notifications-id-View-notification.md", SERVER API, "get/notifications/:id (View notification)"]
+    #- ["API/notifications-id-Track-open.md", SERVER API, "put/notifications/:id (Track open)"]
+    - ["API/notifications-Create-Notification.md", SERVER API, "Send Push Notification"]
+    #- ["API/notifications-id-Cancel-notification.md", SERVER API, "delete/notifications/:id (Cancel notification)"]
+
+theme: readthedocs
