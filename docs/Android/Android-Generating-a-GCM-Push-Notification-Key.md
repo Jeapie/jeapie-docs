@@ -13,7 +13,7 @@
 
 **Copy the "Project Number" from this page.**
 
-You will need to enter it into your app later when you follow the SDK guide.
+You will need to add it to the source code of your app later when you follow the SDK guide.
 
 ##STEP 2: Turn on "Google Cloud Messaging for Android" API
 
