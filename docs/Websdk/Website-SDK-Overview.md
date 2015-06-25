@@ -5,7 +5,7 @@
 
 W3C Web Push Notifications are currently only supported by Chrome 42+
 
-This includes Chrome for Windows, Mac OSX, Linux, Chrome OS, and Android but **NOT iOS**.
+This includes Chrome for Windows, Mac OSX, Linux, Chrome OS and Android. Chrome for iOS is not yet supported by Google.
 
 
 * Follow our [Website SDK HTTPS Installation](Website-SDK-HTTPS-Installation.md) guide if your website uses an HTTPS connection.
