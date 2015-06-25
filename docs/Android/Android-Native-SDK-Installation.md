@@ -9,7 +9,7 @@ Jeapie requires Google Play services (google-play-services_lib) and Android Supp
 **2.** Copy \*.aar file into the lib folder of your android project.
 
 
-**3.** Set \*.aar `sdk filename` and `play-services` in gradle.
+**3.** Set `sdk filename` of the \*.aar file and `play-services` in gradle.
 
 ```gradle
 dependencies {
