@@ -2,14 +2,14 @@
 
 **'Google Play services' & 'Android Support Library'**
 
-Jeapie requires Google Play services(google-play-services_lib) and Android Support Library v4(android-support-v4.jar). android-support-v13.jar can be used instead if your project already requires it.
+Jeapie requires Google Play services (google-play-services_lib) and Android Support Library v4 (android-support-v4.jar). android-support-v13.jar can be used instead if your project already requires it.
 
 **1.** Download the latest [Jeapie Android SDK](https://github.com/Jeapie/jeapie-android).
 
-**2.** Copy \*.aar file into lib folder android project.
+**2.** Copy \*.aar file into the lib folder of your android project.
 
 
-**3.** Config gradle. Set \*.aar `sdk filename` and `play-services`.
+**3.** Set \*.aar `sdk filename` and `play-services` in gradle.
 
 ```gradle
 dependencies {
@@ -26,9 +26,9 @@ repositories{
 }
 ```
 
-**4.** Paste permissions in Android project `Manifest`.
+**4.** Paste permissions into the `Manifest` file of your Android project .
 
-Replace `{APP_PACKAGE}` to your own package.
+Replace `{APP_PACKAGE}` by your own package.
 
 ```xml
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -52,13 +52,13 @@ Replace `{APP_PACKAGE}` to your own package.
     
 ```
 
-**5.** Paste configs in Anroid project `Manifest`. 
+**5.** Paste configs into the `Manifest` file of your Anroid project. 
 
-And replace `{APP_SECRET}` and `{APP_KEY}` to your own keys from Jeapie dashboard.
+Replace `{APP_SECRET}` and `{APP_KEY}` by your own keys from Jeapie dashboard.
 ![Rest api keys](/img/00000206.png)
 
 
-And `A{PROJECT_ID}` to project number from Google Console.<br>
+Also replace  `A{PROJECT_ID}` by a project number from your Google Console.<br>
 Look [How to get project number](Android-Generating-a-GCM-Push-Notification-Key/#step-1-create-a-google-project-and-save-the-project-number)
 
 <div class="admonition note">
@@ -112,7 +112,7 @@ Example: "A1111111111"</p>
 </application>
 ```
 
-**6.** Paste in Launch Activity
+**6.** Paste the code into "Launch Activity"
 
 ```java
 JeapieAPI.init(getApplicationContext());
