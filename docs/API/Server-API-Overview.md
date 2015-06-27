@@ -1,13 +1,13 @@
 #Server API Overview
 
-The Jeapie Server API serves purpose: Programmatically delivering notifications from your server or from one mobile device to another.
+The Jeapie Server API serves purpose of programmatically delivering notifications from your server to user’s device or from one mobile device to another.
 
 
 ##Authentication
 
 API requests are identified using [HTTP basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication).<br>
-The username portion is the application key **"APP_KEY"**.<br>
-The password portion is either the application secret **"APP_SECRET"**.
+Use the application key (**"APP_KEY"**) as your username.<br>
+Use the application secret (**"APP_SECRET"**) as your password.
 
 
 You can find API key of your mobile/web application here:
