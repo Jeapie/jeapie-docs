@@ -1,7 +1,7 @@
 #Website SDK API
 **JavaScript Async**
 
-The example assume you have the following defined before calling Jeapie functions:
+The example assumes that you have the following code placed defined before calling Jeapie functions:
 ```HTML
 <script src="https://cdn.jeapie.com/jeapiejs/webpush.js" ></script>
 <script>var Jeapie = Jeapie || [];</script>
@@ -23,15 +23,15 @@ The example assume you have the following defined before calling Jeapie function
 ##Functions
 #####**init**
 
-Only required method you need to call to setup Jeapie to receive push notifications. Call this from each page of your site.
+This is the only required method that you need to call for setting up Jeapie to receive push notifications. Call it from each page of your site.
 
 * **Parameters**
  * **`JSON`** ***options***
-   * **`String`** ***appKey(Required) ***- Your Jeapie app id found on the settings page at jeapie.com.
-   * **`Boolean`** ***autoRegister(Optional)*** - Automatically show browser prompt to accept notifications. You can pass in false to delay this pop-up and then call `registerUserForPush` to prompt them later.
-   * **`Boolean`** ***createButton(Optional)*** - It creates a default button that, when clicked, the user sees a window for receipt of the notifications
-   * **`Boolean`** ***subdomainName(Required for HTTP sites)*** 
-   * **`String`** ***tooltipText(Optional, use only with createButton)*** - Default `Подпишитесь на наши обновления в один клик!`. Set text will shown users on deafult button. 
+   * **`String`** ***appKey (Required) ***-Your Jeapie app id can be found on the settings page at jeapie.com.
+   * **`Boolean`** ***autoRegister (Optional)*** - Automatically show browser prompt to accept notifications. You can pass in "false" to delay this pop-up and then call `registerUserForPush` to prompt them later.
+   * **`Boolean`** ***createButton (Optional)*** -  It creates a default button that generates a window for receipt of the notifications, which appears after clicking
+   * **`Boolean`** ***subdomainName (Required for HTTP sites)*** 
+   * **`String`** ***tooltipText (Optional, use only with createButton)*** - Default `One click subscription to our newsletter!`. Set the text that will be shown to users on a default button.
 
 **Example**
 ```javascript
@@ -43,7 +43,7 @@ Jeapie.init("appKey": "YOUR_JEAPIE_APP_KEY");
 
 #####**registerUserForPush**
 
-Call when you want to prompt the user to accept push notifications. Only call if you set false to `autoRegister:` when calling init.
+Call it when you want to prompt the user to accept push notifications. Only call if you set "false" in `autoRegister:` when called "init".
 
 **Example**
 ```javascript
@@ -52,7 +52,7 @@ Jeapie.registerUserForPush(callback);
 
 #####**addTag**
 
-Tag a user based on an app event of your choosing so later you can create segments on [jeapie.com](https://jeapie.com) to target these users. Recommend using setTags over addTag if you need to set more than one tag on a user at a time.
+Tags a user based on an app event of your choosing so that later you can create segments on [jeapie.com](https://jeapie.com) to target these users. Recommend using setTags over addTag if you need to set more than one tag on a user at a time.
 
 * **Parameters**
  * **`string`** ***value*** - Value to set.
@@ -76,7 +76,7 @@ Jeapie.setTags({"value1", "value2"});
 
 #####**removeTag**
 
-Deletes a tag that was previously set on a user with `addTag` or `setTags`. Use `removeAllTags` if you need to delete all of them.
+Deletes a tag that was previously set for a user with `addTag` or `setTags`. Use `removeAllTags` if you need to delete all of them.
 
 * **Parameters**
  * **`String`** ***value*** - Value to remove.
@@ -88,7 +88,7 @@ Jeapie.removeTag("value");
 
 #####**removeAllTags**
 
-Deletes all tags that were previously set on a user with `addTag` or `setTags`.
+Deletes all tags that were previously set for a user with `addTag` or `setTags`.
 
 **Example**
 ```javascript
@@ -97,7 +97,7 @@ Jeapie.removeAllTags();
 
 #####**setAlias**
 
-Set a unique value for each user [jeapie.com](https://jeapie.com) to target these users. 
+Set a unique alias for each user of [jeapie.com](https://jeapie.com) to target these users. 
 
 * **Parameters**
  * **`string`** ***value*** - Value to set.
@@ -109,7 +109,7 @@ Jeapie.setAlias("value");
 
 #####**isPushManagerSupported**
 
-Returns true if the current browser viewing the page supports push notifications.
+Returns "true" If the browser of current viewer of the page supports push notifications.
 
 ```javascript
 Jeapie.isPushManagerSupported();
