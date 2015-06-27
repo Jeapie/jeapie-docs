@@ -10,7 +10,7 @@
 
 #### Authentication
 
-Go to link to read about [Jeapie authentication](Server-API-Overview/#authentication).
+Click the following link to read about [Jeapie authentication](Server-API-Overview/#authentication).
 
 #### Full example for Mobile platforms
 
@@ -90,15 +90,15 @@ Go to link to read about [Jeapie authentication](Server-API-Overview/#authentica
 | **message** `Required` | **String** <br> *Required unless content_available=true* |
 || Push text. Example: <br> `"message": "hello, world"` |
 | **data** *Optional* | **Hash** |
-| | Extra data for push. Can contains additional data for for processing within the application. Example: <br> `"data": {"page": 1, "url": "http://example.com}"` |
+| | Extra data for push. Can contain additional data for for processing within the application. Example: <br> `"data": {"page": 1, "url": "http://example.com}"` |
 | **badge** *Optional* | **Mixed**: String or Int |
-| | Only for iphone and windows phone. For set badge number use int, for increment badge number use "inc". Example: <br> `"badge": 3` or `"badge": "inc"` |
+| | Only for iphone and windows phone. For setting badge number use int, for incrementing badge number use "inc". Example: <br> `"badge": 3` or `"badge": "inc"` |
 | **platforms** *Optional* | **Array** <br> List of mobile platforms: "android" <br> List of web platforms: "chrome", "safari" |
 | | List of platforms. Example: <br> if mobile platforms: `"platforms": ["android", "ios"]` <br> or if web platforms: `"platforms": ["chrome", "safari"]` | 
 | **default_sound** *Optional* | **Int**: `0` or `1` <br> *default:* `0` |
-| | If need default sound set `1` else `0`. Example: <br> `"default_sound": 1` |
+| | If you need default sound set `1` else `0`. Example: <br> `"default_sound": 1` |
 | **ttl** *Optional* | **Int** <br> *default:* `3600` |
-| | Time to live parameter - the maximum lifespan of a message in seconds. <br>Example: `"ttl":3600` |
+| | "Time to live" parameter - the maximum lifespan of a message in seconds. <br>Example: `"ttl":3600` |
 
 ##### Android params *(All params are optional)*
 
@@ -111,9 +111,9 @@ Go to link to read about [Jeapie authentication](Server-API-Overview/#authentica
 | **icon** *Optional* | **String** |
 | | Icon file name in the "res/drawable" folder. <br>Example: `"icon":"icon.png"` |
 | **custom_icon** *Optional* | **String** |
-| | Icon full path http url <br>Example: `"custom_icon": "http://example.com/icon.png"` |
+| | Full path to icon file (http url) <br>Example: `"custom_icon": "http://example.com/icon.png"` |
 | **banner** *Optional* | **String** |
-| | Banner full path http url <br>Example: `"banner": "http://example.com/banner.png"` |
+| | Full path to banner file (http url) <br>Example: `"banner": "http://example.com/banner.png"` |
 
 ##### Chrome params *(All params are optional)*
 |           |                                |
@@ -121,9 +121,9 @@ Go to link to read about [Jeapie authentication](Server-API-Overview/#authentica
 | **header** *Optional* | **String** |
 | | Chrome notification header. <br>Example: `"header": "Header text"` |
 | **icon** *Optional* | **String** |
-| | Icon full path http url <br>Example: `"icon": "http://example.com/icon.png"` |
+| | Full path to icon file (http url <br>Example: `"icon": "http://example.com/icon.png"` |
 | **redirect_url** *Optional* | **String** |
-| | The relative url which is redirect after clicking on a push. <br>Example: `"redirect_url": "/example.html"` |
+| | The relative url which is opened after clicking on a push. <br>Example: `"redirect_url": "/example.html"` |
 
 ##### iOS params *(In development)*
 
@@ -135,9 +135,9 @@ Go to link to read about [Jeapie authentication](Server-API-Overview/#authentica
 | **all** | **Int** |
 | | send to all devices. <br> Example: `"all": 1` |
 | **tokens** | **Array<String>** |
-| | Send to array of device push tokens. Limit 100 tokens. Example: <br> `"tokens": ["dec301908b9ba...8df85e57a58e40f96f", "523f4c2068674f1fe...2ba25cdc250a2a41"]` |
+| | Send to array of device (browser) tokens. Limit is 100 tokens. Example: <br> `"tokens": ["dec301908b9ba...8df85e57a58e40f96f", "523f4c2068674f1fe...2ba25cdc250a2a41"]` |
 | **aliases** | **Array<String>** |
-| | Array of device aliases setted by sdk in mobile app or web. Example: <br> `"aliases": ["own_id_device_1", "own_id_device_2", "own_id_device_3"]` |
+| | Array of device aliases set by sdk in mobile app or on web. Example: <br> `"aliases": ["own_id_device_1", "own_id_device_2", "own_id_device_3"]` |
 
 
 ###Result Format
@@ -157,7 +157,7 @@ Go to link to read about [Jeapie authentication](Server-API-Overview/#authentica
 
 
 
-##Examples Shell Code
+##Shell Code Examples
 
 Send push to all platforms and all devices immediately:
 
@@ -174,7 +174,7 @@ curl -X POST \
      https://jeapie.com/api/v2/push.json
 ```
 
-Send push only on android with additional android params on aliases setted in mobile app:
+Send push only to android devices with aliases setted in mobile app:
 
 ```Shell
 curl -X POST \
@@ -194,7 +194,7 @@ curl -X POST \
 ```
 
 
-Send push to chrome and redirect to page after clicking on push
+Send push to Chrome and redirect to page after clicking on push
 
 ```Shell
 curl -X POST \
