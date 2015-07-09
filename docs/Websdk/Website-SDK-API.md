@@ -71,7 +71,7 @@ Tag a user based on an app event of your choosing so later you can create segmen
 
 **Example**
 ```javascript
-Jeapie.setTags({"value1", "value2"});
+Jeapie.setTags(["value1", "value2"]);
 ```
 
 #####**removeTag**
