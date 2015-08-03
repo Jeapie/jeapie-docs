@@ -171,7 +171,7 @@ curl -X POST \
             "all": 1
         }
      }' \
-     https://jeapie.com/api/v2/push.json
+     https://go.jeapie.com/api/v2/push.json
 ```
 
 Send push only to android devices with aliases setted in mobile app:
@@ -190,7 +190,7 @@ curl -X POST \
             "aliases": ["some_id1", "some_id2", "email@example.com"]
         }
      }' \
-     https://jeapie.com/api/v2/push.json
+     https://go.jeapie.com/api/v2/push.json
 ```
 
 
@@ -212,5 +212,42 @@ curl -X POST \
             "all": 1
         }
      }' \
-     https://jeapie.com/api/v2/push.json
+     https://go.jeapie.com/api/v2/push.json
+```
+
+
+```php
+// auth
+$APP_KEY    = '{paste_app_key_from_dashboard}';
+$APP_SECRET = '{paste_app_secret_from_dashboard}';
+
+//data
+$pushData = [
+    'message' => 'Push message',
+    'chrome' => [
+        'header' => 'push title',
+        'icon' => 'http://example.com/icon.png',
+        'redirect_url' => 'http://example.com',
+    ],
+    'audience' => [
+        'all' => 1,
+    ],
+];
+
+$pushDataString = json_encode($pushData);                                                                                
+          
+// post json request                                                                                                     
+$ch = curl_init('https://go.jeapie.com/api/v2/push.json'); 
+curl_setopt($ch, CURLOPT_USERPWD, $APP_KEY . ":" . $APP_PASSWORD);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+curl_setopt($ch, CURLOPT_POSTFIELDS, $pushDataString);                                                                  
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5); 
+curl_setopt($ch, CURLOPT_TIMEOUT, 5);                                                                  
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+    'Content-Type: application/json',                                                                                
+    'Content-Length: ' . strlen($pushDataString))                                                                       
+);                                                                                                                   
+                                                                                                                     
+$result = curl_exec($ch);
 ```

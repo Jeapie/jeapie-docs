@@ -23,11 +23,11 @@ You can find API key of your mobile/web application here:
 curl -X \
     -u "1e26f7bb3f81e1ab789d3e20b9cf6325:9bb59fcbff38b85647c421c65cca06ce" \
     -H "Content-Type: application/json" \
-    https://app.jeapie.com/api/v2/push.json
+    https://go.jeapie.com/api/v2/push.json
 
 // or
 curl -X \
     -u "1e26f7bb3f81e1ab789d3e20b9cf6325:9bb59fcbff38b85647c421c65cca06ce" \
     -H "Content-Type: application/json" \
-    https://app.jeapie.com/api/v2/push.json
+    https://go.jeapie.com/api/v2/push.json
 ```
