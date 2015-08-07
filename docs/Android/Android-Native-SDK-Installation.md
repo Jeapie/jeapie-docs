@@ -105,9 +105,9 @@ Example: "A1111111111"</p>
             </intent-filter>
         </receiver>
 
-        <service android:name="com.jeapieLib.service.EventsSenderService"/>
+        <service android:name="com.jeapieLib.EventsSenderService"/>
 
-        <service android:name="com.jeapieLib.service.LocationTrackingService"/>
+        <service android:name="com.jeapieLib.LocationTrackingService"/>
 
 </application>
 ```

@@ -1,380 +1,367 @@
 #iOS Native SDK API
 ##List of Methods
 
-* [initWithLaunchOptions](#initwithlaunchoptions)
-* [registerForPushNotifications](#registerforpushnotifications)
-* [sendTag](#sendtag)
-* [sendTags](#sendtags)
-* [getTags](#gettags)
-* [deleteTag](#deletetag)
-* [deleteTags](#deletetags)
-* [~~sendPurchase~~](#sendpurchase)
-* [IdsAvailable](#idsavailable)
+* [didRegisterForRemoteNotificationsWithDeviceToken](#didRegisterForRemoteNotificationsWithDeviceToken)
+* [didReceiveRemoteNotification](#didReceiveRemoteNotification)
+* [setAlias](#setAlias)
+* [setPhone](#setPhone)
+* [setEmail](#setEmail)
+* [addTag](#addTag)
+* [setTags](#setTags)
+* [removeTag](#removeTag)
+* [removeTags](#removeTags)
+* [unsubscribe](#unsubscribe)
+* [subscribe](#subscribe)
+* [enableGeolocationWithInterval](#enableGeolocationWithInterval)
+* [disableGeolocation](#disableGeolocation)
+* [setLocation](#setLocation)
+* [deliver](#deliver)
 
-##List of Block Callbacks
-
-* [JeapieHandleNotificationBlock](#Jeapiehandlenotificationblock)
-* [JeapieResultSuccessBlock](#Jeapieresultsuccessblock)
-* [JeapieFailureBlock](#Jeapiefailureblock)
-* [JeapieIdsAvailableBlock](#Jeapieisavailableblock)
 
 ##Methods
-#####**initWithLaunchOptions**
+#####**<a name="didRegisterForRemoteNotificationsWithDeviceToken">didRegisterForRemoteNotificationsWithDeviceToken</a>**
 
-Must be called from `didFinishLaunchingWithOptions` in `AppDelegate.m`. Instead of passing in appId here you can also add Jeapie_APPID as a key in your plist file and place your Jeapie app Id as a value there.
+Must be called from `didRegisterForRemoteNotificationsWithDeviceToken` <br>and `didFinishLaunchingWithOptions` in `AppDelegate.m`. 
+Register push device token in Jeapie Dashboard.
 
-* **Parameters**
+```Objective-C
+- (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)data;
+```
 
- * **`NSDictionary*`** ***launchOptions*** - launchOptions that you received from didFinishLaunchingWithOptions
- * **`NSString*`** ***appId*** - Your Jeapie app id found on the settings page at [jeapie.com](https://jeapie.com).
- * **`JeapieHandleNotificationBlock`** ***callback(Optional)*** - Function to be called when a notification is opened or received while the app is in use.
- * **`BOOL`** ***autoRegister(Optional)*** - Default true. Automatically show the iOS system prompt to accept push notifications. You can pass in false to delay this pop-up and then call `registerForPushNotifications` to prompt them later.
+**Parameters**
 
-* **Example**
+* **`NSData*`** ***data*** - device token.
+
+**Example**
 
 `Objective-C`
 ```Objective-C
-- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions {
-        self.Jeapie = [[Jeapie alloc] initWithLaunchOptions:launchOptions handleNotification:^(NSString* message, NSDictionary* additionalData, BOOL isActive) {
-        }];
-  }
-```
-
-`Swift`
-```Swift
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let Jeapie: Jeapie = Jeapie(launchOptions: launchOptions) {
-          (message, additionalData, isActive) in
-        }
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    [[JBJeapieAPIService sharedInstance] didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 ```
 
-#####**registerForPushNotifications**
+---
+<br><br>
 
-Call when you want to prompt the user to accept push notifications. Only call once and only if you passed false to `initWithLaunchOptions autoRegister:`.
-* **Example**
+#####**<a name="didReceiveRemoteNotification">didReceiveRemoteNotification</a>**
+
+Must be called from `didReceiveRemoteNotification` in `AppDelegate.m`. 
+Track open push for statistics.
+
+```Objective-C
+- (void)didReceiveRemoteNotification:(NSDictionary *)userInfo;
+```
+
+**Parameters**
+
+* **`NSDictionary*`** ***userInfo*** - contain push information.
+ 
+**Example**
 
 `Objective-C`
 ```Objective-C
-[Jeapie registerForPushNotifications];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // Get push info
+    NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    
+    if (userInfo) {
+        // track push open
+        [[JBJeapieAPIService sharedInstance] didReceiveRemoteNotification:userInfo];
+    }
+    
+    return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    // track push open
+    [[JBJeapieAPIService sharedInstance] didReceiveRemoteNotification:userInfo];
+}
 ```
 
-`Swift`
-```Swift
-Jeapie.registerForPushNotifications();
+---
+<br><br>
+
+#####**<a name="setAlias">setAlias</a>**
+
+Set a alias(user identifier) for each user to target these users.
+
+```Objective-C
+- (void)setAlias:(NSString *)alias;
 ```
 
-#####**sendTag**
+**Parameters**
 
-Tag a user based on an app event of your choosing so later you can create segments on [jeapie.com](https://jeapie.com) to target these users. Recommend using sendTags over sendTag if you need to set more than one tag on a user at a time.
+* **`NSString*`** ***alias*** - user alias.
 
-* **Parameters**
- * **`NSString*`** ***key*** - Key of your choosing to create or update.
- * **`NSString*`** ***value*** - Value to set on the key.
-   * *NOTE*: Passing in a blank String deletes the key, you can also call deleteTag or deleteTags.
- * **`JeapieResultSuccessBlock`** ***onSuccess(Optional)*** - Call if there were no errors sending the tag.
- * **`JeapieFailureBlock`** ***onFailure(Optional)*** - Called if there was an error.
-* **Example**
+**Example**
 
 `Objective-C`
 ```Objective-C
-[Jeapie sendTag:@"key" value:@"value"];
+[[JBJeapieAPIService sharedInstance] setAlias:@"user_identification"];
 ```
 
-`Swift`
-```Swift
-Jeapie.sendTag("key", value: "value");
+---
+<br><br>
+
+#####**<a name="setPhone">setPhone</a>**
+
+Set a user phone number for additional user targeting.
+
+```Objective-C
+- (void)setPhone:(NSString *)phone;
 ```
 
-#####**sendTags**
+**Parameters**
 
-Tag a user based on an app event of your choosing so later you can create segments on [jeapie.com](https://jeapie.com/) to target these users.
+* **`NSString*`** ***phone*** - user phone;
 
-* **Parameters**
- * **`NSDictionary*`** ***keyValues*** - Key value pairs of your choosing to create or update.
-   * *NOTE*: Passing in a blank `NSString*` as a value deletes the key, you can also call `deleteTag` or `deleteTags`.
- * **`JeapieResultSuccessBlock`** ***onSuccess(Optional)*** - Call if there were no errors sending the tag.
- * **`JeapieFailureBlock`** ***onFailure(Optional)*** - Called if there was an error.
-* **Example**
+**Example**
 
 `Objective-C`
 ```Objective-C
-[Jeapie sendTags:(@{@"key1" : @"value1", @"key2" : "value2"}];
+[[JBJeapieAPIService sharedInstance] setPhone:@"1415111111"];
 ```
 
-`Swift`
-```Swift
-Jeapie.sendTags(["key1": "value1", "key2": "value2");
+---
+<br><br>
+
+#####**<a name="setEmail">setEmail</a>**
+
+Set a user phone number for additional user targeting.
+
+```Objective-C
+- (void)setEmail:(NSString *)email;
 ```
 
+**Parameters**
 
-#####**getTags**
+* **`NSString*`** ***email*** - user email.
 
-Retrieve a list of tags that have been set on the user from the Jeapie server.
-
-* **Parameters**
- * **`JeapieResultSuccessBlock`** ***successBlock*** - Called when tags are received from Jeapie's server.
- * **`JeapieFailureBlock`** ***onFailure(Optional)*** - Called if there was an error.
-* **Example**
+**Example**
 
 `Objective-C`
 ```Objective-C
-[Jeapie getTags:^(NSDictionary* tags) {
-  NSLog(@"%@", tags);
-}];
+[[JBJeapieAPIService sharedInstance] setEmail:@"login@example.com"];
 ```
 
-`Swift`
-```Swift
-Jeapie.getTags({ (tags) in
-  NSLog("%@", tags);
-});
+---
+<br><br>
+
+#####**<a name="addTag">addTag</a>**
+
+Tags a user based on an app event of your choosing so that later you can 
+create segments on Jeapie to target these users. 
+Recommend using setTags over addTag if you need to set more than one tag on a user at a time.
+
+```Objective-C
+- (void)addTag:(NSString *)tag;
 ```
 
-#####**deleteTag**
+**Parameters**
 
-Deletes a tag that was previously set on a user with `sendTag` or `sendTags`. Use `deleteTags` if you need to delete more than one.
+* **`NSString*`** ***tag*** - tag name.
 
-* **Parameters**
- * **`NSString*`** ***key*** - Key to remove.
- * **`JeapieResultSuccessBlock`** ***onSuccess(Optional)*** - Call if there were no errors.
- * **`JeapieFailureBlock`** ***onFailure(Optional)*** - Called if there was an error.
-* **Example**
+**Example**
 
 `Objective-C`
 ```Objective-C
-[Jeapie deleteTag:@"key"];
+[[JBJeapieAPIService sharedInstance] addTag:@"tag_name"];
 ```
 
-`Swift`
-```Swift
-Jeapie.deleteTag("key");
+---
+<br><br>
+
+#####**<a name="setTags">setTags</a>**
+
+Tag a user based on an app event of your choosing so later 
+you can create segments on Jeapie to target these users. ***Remove all tags and set new array of tags.***
+
+```Objective-C
+- (void)setTags:(NSArray *)tags;
 ```
 
-#####**deleteTags**
+**Parameters**
 
-Deletes tags that were previously set on a user with `sendTag` or `sendTags`.
+* **`NSArray*`** ***tags*** - array of tags.
 
-* **Parameters**
- * **`NSArray*`** ***keys*** - Keys to remove.
- * **`JeapieResultSuccessBlock`** ***onSuccess(Optional)*** - Call if there were no errors.
- * **`JeapieFailureBlock`** ***onFailure(Optional)*** - Called if there was an error.
-* **Example**
+**Example**
 
 `Objective-C`
 ```Objective-C
-[Jeapie sendTags:@[@"key1", @"key2"]];
+[[JBJeapieAPIService sharedInstance] setTags:@[@"tag_name1", @"tag_name2"]];
 ```
 
-`Swift`
-```Swift
-Jeapie.sendTags(["key1", "key2"]);
-```
+---
+<br><br>
 
-#####**~~sendPurchase~~**
+#####**<a name="removeTag">removeTag</a>**
 
-This was deprecated in version 1.6.0 as purchases are now automatically tracked for you.
+Deletes a tag that was previously set for a user with addTag or setTags. 
+Use removeAllTags if you need to delete all of them.
 
-~~Call this method when a user completes an in-app purchase, and provide the amount spent in USD. This can later be used to target free vs paid users when sending a push notification.~~
-
-* ~~**Parameters**~~
- * ~~NSNumber amount - Amount spent in USD.~~
-* ~~**Example**~~
 ```Objective-C
-// Method call has no affect.
-[Jeapie sendPurchase:[NSNumber numberWithDouble:12.34]];
+- (void)removeTag:(NSString *)tag;
 ```
 
-#####**IdsAvailable**
+**Parameters**
 
-Lets you retrieve the Jeapie user id and push token. Your callback block is called after the device is successfully registered with Jeapie. pushToken will be nil if the user did not accept push notifications.
+* **`NSString*`** ***tag*** - tag name.
 
-* **Parameters**
- * **`JeapieIdsAvailableBlock`** ***IdsAvailableBlock*** - Called when the user id is available.
-* **Example**
+**Example**
 
 `Objective-C`
 ```Objective-C
-[Jeapie IdsAvailable:^(NSString* userId, NSString* pushToken) {
-  NSLog(@"UserId:%@", userId);
-  if (pushToken != nil)
-    NSLog(@"pushToken:%@", pushToken);
-}];
+[[JBJeapieAPIService sharedInstance] removeTag:@"tag_name"];
 ```
 
-`Swift`
-```Swift
-Jeapie.IdsAvailable({ (userId, pushToken) in
-  NSLog("UserId:%@", userId);
-  if (pushToken != nil) {
-    NSLog("pushToken:%@", pushToken);
-  }
-});
+---
+<br><br>
+
+#####**<a name="removeTags">removeTags</a>**
+
+Deletes all tags that were previously set for a user with addTag or setTags.
+
+```Objective-C
+- (void)removeTags;
 ```
 
-##**Block Callbacks**
-#####**JeapieHandleNotificationBlock**
-
-Block for Jeapie methods that gets called when the Jeapie server is contacted successfully.
-
-* **Parameters**
- * **`NSDictionary*`** ***message*** - Visible text the user sees on the push notification itself.
- * **`NSDictionary*`** ***additionalData*** - Key value pairs set on the additional data section on jeapie.com.
-   * NOTE: If you set Action Buttons on your notification the actionSelected key will contain the id of the button pressed; "_DEFAULT_" will be the id if the user tapped on the notification itself when buttons were present.
- * **`BOOL`** ***isActive*** - True if user is currently using your app when the notification came in.
-* **Example**
+**Example**
 
 `Objective-C`
 ```Objective-C
-  self.Jeapie = [[Jeapie alloc] initWithLaunchOptions:launchOptions handleNotification:^(NSString* message, NSDictionary* additionalData, BOOL isActive) {
-          UIAlertView* alertView;
-
-          NSLog(@"APP LOG ADDITIONALDATA: %@", additionalData);
-
-          if (additionalData) {
-              // Append AdditionalData at the end of the message
-              NSString* displayMessage = [NSString stringWithFormat:@"NotificationMessage:%@", message];
-
-              NSString* messageTitle;
-              if (additionalData[@"discount"])
-                  messageTitle = additionalData[@"discount"];
-              else if (additionalData[@"bonusCredits"])
-                  messageTitle = additionalData[@"bonusCredits"];
-              else if (additionalData[@"actionSelected"])
-                  messageTitle = [NSString stringWithFormat:@"Pressed ButtonId:%@", additionalData[@"actionSelected"]];
-
-              alertView = [[UIAlertView alloc] initWithTitle:messageTitle
-                                                     message:displayMessage
-                                                    delegate:self
-                                           cancelButtonTitle:@"Close"
-                                           otherButtonTitles:nil, nil];
-          }
-
-          // If a push notification is received when the app is being used it does not go to the notifiction center so display in your app.
-          if (alertView == nil && isActive) {
-              alertView = [[UIAlertView alloc] initWithTitle:@"Jeapie Message"
-                                                     message:message
-                                                    delegate:self
-                                           cancelButtonTitle:@"Close"
-                                           otherButtonTitles:nil, nil];
-          }
-
-          // Highly recommend adding app logic around this so the user is not interrupted.
-          if (alertView != nil)
-              [alertView show];
-
-      }];
+[[JBJeapieAPIService sharedInstance] removeTags];
 ```
 
-`Swift`
-```Swift
-let Jeapie: Jeapie = Jeapie(launchOptions: launchOptions) {
-          (message, additionalData, isActive) in
-            if (additionalData != nil) {
-                NSLog("APP LOG ADDITIONALDATA: %@", additionalData);
-                // Append AdditionalData at the end of the message
-                let displayMessage: NSString = NSString(format:"NotificationMessage:%@", message);
+---
+<br><br>
 
-                var messageTitle: NSString = "";
-                if (additionalData["discount"] != nil) {
-                    messageTitle = additionalData["discount"] as String
-                }
-                else if (additionalData["bonusCredits"] != nil) {
-                    messageTitle = additionalData["bonusCredits"] as String;
-                }
-                else if (additionalData["actionSelected"] != nil) {
-                    messageTitle = NSString(format:"Pressed ButtonId:%@", additionalData["actionSelected"] as String);
-                }
+#####**<a name="unsubscribe">unsubscribe</a>**
 
-                var alertView: UIAlertView = UIAlertView(title: messageTitle,
-                    message:displayMessage,
-                    delegate:self,
-                    cancelButtonTitle:"Close");
+Unsubscribe this device from push notifications.
 
-                // Highly recommend adding app logic around this so the user is not interrupted.
-                alertView.show();
-            }
-            // If a push notification is received when the app is being used it does not go to the notifiction center so display in your app.
-            else if (isActive) {
-                var alertView: UIAlertView = UIAlertView(title:"Jeapie Message",
-                    message:message,
-                    delegate:self,
-                    cancelButtonTitle:"Close");
-                alertView.show();
-            }
-        }
+```Objective-C
+- (void)unsubscribe;
 ```
 
-#####**JeapieResultSuccessBlock**
-
-Block for Jeapie methods that gets called when the Jeapie server is contacted successfully.
-
-* **Parameters**
- * **`NSDictionary`** ***result*** - The resulting JSON response from the Jeapie server.
-* **Example**
+**Example**
 
 `Objective-C`
 ```Objective-C
-[Jeapie getTags:^(NSDictionary* result) {
-  NSLog(@"%@", result);
-}];
+[[JBJeapieAPIService sharedInstance] unsubscribe];
 ```
 
-`Swift`
-```Swift
-Jeapie.getTags({ (tags) in
-  NSLog("%@", tags);
-});
-```
+---
+<br><br>
 
-#####**JeapieFailureBlock**
+#####**<a name="subscribe">subscribe</a>**
 
-Block for Jeapie methods that gets called when the Jeapie server can't be contacted or there was a error in the response.
+Subscribe this device for receive push notifications if this device was unsubscribed by `unsubcribe` method.
 
-* **Parameters**
- * **`NSError*`** ***error*** - errorWithDomain == "JeapieError", code == HTTP error code from the Jeapie server, userInfo == JSON Jeapie responded with.
-* **Example**
 ```Objective-C
-[self.Jeapie registerDeviceToken:deviceToken onSuccess:^(NSDictionary* results) {
-  NSLog(@"Device Registered with Jeapie.");
-} onFailure:^(NSError* error) {
-  NSLog(@"Error in Jeapie Registration: %@", error);
-}];
+- (void)subscribe;
 ```
 
-#####**JeapieIdsAvailableBlock**
-
-Lets you retrieve the Jeapie user id and device token. Your block is called after the device is successfully registered with Jeapie.
-
-* **Parameters**
- * **`NSString*`** ***userId***- Jeapie userId is a UUID formatted string.(unique per device per app)
- * **`NSString*`** ***pushToken*** - pushToken is a Apple assigned identifier(unique per device per app).
-
-**NOTE**
-
-Might be `nil` if the user does not accept push notifications for your app or there was a connection issue.
-
-**NOTE 2**
-
-If you disable auto register or the user waits over 30 seconds to say yes to the system prompt then your call back will be called twice. First with just the userId filed and then a 2nd time to with the push token included.
-
-* **Example**
+**Example**
 
 `Objective-C`
 ```Objective-C
-[Jeapie IdsAvailable:^(NSString* userId, NSString* pushToken) {
-  NSLog(@"UserId:%@", userId);
-  if (pushToken != nil)
-    NSLog(@"pushToken:", pushToken);
-}];
+[[JBJeapieAPIService sharedInstance] subscribe];
 ```
 
-`Swift`
-```Swift
-Jeapie.IdsAvailable({ (userId, pushToken) in
-  NSLog("UserId:%@", userId);
-  if (pushToken != nil) {
-    NSLog("pushToken:%@", pushToken);
-  }
-});
+---
+<br><br>
+
+#####**<a name="enableGeolocationWithInterval">enableGeolocationWithInterval</a>**
+
+Collect user coordinates for advanced user targeting. Geolocations collect with custom period in seconds 
+when mobile application has forengraund state.
+
+If you have permission for background geolocation, please use `setLocation` method.
+
+
+```Objective-C
+- (void)enableGeolocationWithInterval:(NSTimeInterval)interval;
 ```
+
+**Parameters**
+
+* **`NSTimeInterval`** ***interval*** - Interval in seconds. Please use more then 30 sec.
+
+**Example**
+
+`Objective-C`
+```Objective-C
+[[JBJeapieAPIService sharedInstance] enableGeolocationWithInterval:30];
+```
+
+---
+<br><br>
+
+#####**<a name="disableGeolocation">disableGeolocation</a>**
+
+Disable collecting user coordinates.
+
+```Objective-C
+- (void)disableGeolocation;
+```
+
+**Example**
+
+`Objective-C`
+```Objective-C
+[[JBJeapieAPIService sharedInstance] disableGeolocation];
+```
+
+---
+<br><br>
+
+#####**<a name="setLocation">setLocation</a>**
+
+Save user geolocation to Jeapie for advanced user targeting.
+
+```Objective-C
+- (void)setLocation:(NSArray *)coordinates;
+```
+
+**Parameters**
+
+* **`NSArray *`** ***coordinates*** - user coordinates.
+
+**Example**
+
+`Objective-C`
+```Objective-C
+[[JBJeapieAPIService sharedInstance] setLocation:@[123.21, 321.12]];
+```
+
+---
+<br><br>
+
+#####**<a name="deliver">deliver</a>**
+
+Track push delivered. *By default we can't track push delivered, but can use this method 
+in specific cases for advanced statistics.*
+
+```Objective-C
+- (void)deliver:(NSString *)pushId;
+```
+
+**Parameters**
+
+* **`NSString *`** ***pushId*** - 32 symbols push id.
+
+**Example**
+
+`Objective-C`
+```Objective-C
+[[JBJeapieAPIService sharedInstance] deliver:@"aaaaaaaabbbbbbbbccccccccddddddd"];
+```
+
+---
+<br><br>
+
+

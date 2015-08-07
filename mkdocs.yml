@@ -3,10 +3,10 @@ pages:
     - [index.md, Home]
     - [Getting-Started.md, Getting Started]
 
-    # - [iOS/iOS-Native-SDK-Overview.md, iOS, iOS Native SDK Overview]
-    # - [iOS/Generating-an-iOS-Push-Certificate.md, iOS, Generating an iOS Push Certificate]
-    # - [iOS/iOS-Native-SDK-Installation.md, iOS, iOS Native SDK Installation]
-    # - [iOS/iOS-Native-SDK-API.md, iOS, iOS Native SDK API]
+    - [iOS/iOS-Native-SDK-Overview.md, iOS, iOS Native SDK Overview]
+    - [iOS/Generating-an-iOS-Push-Certificate.md, iOS, Generating an iOS Push Certificate]
+    - [iOS/iOS-Native-SDK-Installation.md, iOS, iOS Native SDK Installation]
+    - [iOS/iOS-Native-SDK-API.md, iOS, iOS Native SDK API]
 
     - [Android/Android-Native-SDK-Overview.md, Android, Android Native SDK Overview]
     - [Android/Android-Generating-a-GCM-Push-Notification-Key.md, Android, Android - Generating a GCM Push Notification Key]

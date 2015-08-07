@@ -97,7 +97,7 @@ Jeapie.removeAllTags();
 
 #####**setAlias**
 
-Set a unique alias for each user of [jeapie.com](https://jeapie.com) to target these users. 
+Set a alias(user identifier) for each user of [jeapie.com](https://jeapie.com) to target these users. 
 
 * **Parameters**
  * **`string`** ***value*** - Value to set.

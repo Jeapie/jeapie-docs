@@ -2,12 +2,12 @@
 
 [Getting Started](Getting-Started.md)
 
-<!-- <h2>IOS</h2>
+<h2>IOS</h2>
 
 * [iOS Native SDK Overview](iOS/iOS-Native-SDK-Overview.md)
 * [Generating an iOS Push Certificate](iOS/Generating-an-iOS-Push-Certificate.md)
 * [iOS Native SDK Installation](iOS/iOS-Native-SDK-Installation.md)
-* [iOS Native SDK API](iOS/iOS-Native-SDK-API.md) -->
+* [iOS Native SDK API](iOS/iOS-Native-SDK-API.md)
 
 <h2>ANDROID</h2>
 
@@ -17,7 +17,7 @@
 * [Android Native SDK API](Android/Android-Native-SDK-API.md)
 * [Android Notification Customizations](Android/Android-Notification-Customizations.md)
 
-<h2>WEBSITES</h2>
+<h2>WEBSITES (Chrome, Yandex & Safari)</h2>
 
 * [Website SDK Overview](Websdk/Website-SDK-Overview.md)
 <!-- * [Website - Generating a GCM Push Notification Key](Websdk/Website-Generating-a-GCM-Push-Notification-Key.md) -->

@@ -238,7 +238,7 @@ $pushDataString = json_encode($pushData);
           
 // post json request                                                                                                     
 $ch = curl_init('https://go.jeapie.com/api/v2/push.json'); 
-curl_setopt($ch, CURLOPT_USERPWD, $APP_KEY . ":" . $APP_PASSWORD);
+curl_setopt($ch, CURLOPT_USERPWD, $APP_KEY . ":" . $APP_SECRET);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
 curl_setopt($ch, CURLOPT_POSTFIELDS, $pushDataString);                                                                  
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    
