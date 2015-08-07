@@ -2,28 +2,30 @@
 
 The goals of this section are to provision your app with Apple and grant Jeapie access to manage your notifications.
 
-##1. Try out our Automatic Provisioning Tool
+##1. Create Certificate Signing Request
 
-We recently released a tool to automate this process!
+**1.1** Open Keychain Access on your Mac (it is in Applications/Utilities) and 
+choose the menu option *Request a Certificate from a Certificate Authority…*.
 
-Simply follow the directions on this page http://jeapie.com/provisionator then [**continue to Step 4**](#4-upload-your-push-certificate-to-Jeapie).
-##OR -- Create Certificate Request Manually
+![Request a Certificate from a Certificate Authority](/img/2015-08-07_1627.png)
 
-**1.1** Open Keychain Access on your Mac OS X system. It may be located in "Applications" > "Utilities" > "Keychain Access"
+**1.2** Save Certificate
 
-**1.2** Select "Keychain Access">"Certificate Assistant">"Request a Certificate From a Certificate Authority..."
+You should now see the following window:
 
-![alt text](https://www.filepicker.io/api/file/ducGROb2SjGcG68MJxcT "Logo Title Text 1")
+![window](/img/2015-08-07_1629.png)
 
-**1.3** Select the "Save to disk" option and enter your information in the required fields. This creates a certification request file that will be used later.
+Enter your email address here. I’ve heard people recommended you use the same email 
+address that you used to sign up for the iOS Developer Program, 
+but it seems to accept any email address just fine.
 
-![alt text](https://www.filepicker.io/api/file/CVamtSOyRAuD3wyojCbe "Logo Title Text 1")
+Check *Saved to disk* and click *Continue*.
 
 ##2. Enable Push Notifications and apply the Certification Request to generate Certificate
 
 **2.1** Select your app from the [Apple's Developer](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) site and press "Edit"
 
-![alt text](https://www.filepicker.io/api/file/LiQTUkUXSPCU2Sh51T5F "Logo Title Text 1")
+![app ids](/img/2015-08-07_1633.png)
 
 **2.2** Scroll down to the bottom and enable Push Notifications and press "Create Certificate..." in either Development or Production.
 
@@ -35,63 +37,45 @@ Here's the difference between each kind of certificate:
 
 Basically, you will want to start with a Sandbox (Development) Push Certificate when developing or updating your app. Then before submitting your app built it with an "Ad Hoc" Provisioning Profile and Production Push Certificate and make sure it receives push notifications. Finally, when submitting your app continue using the production push certificate.
 
-![alt text](https://www.filepicker.io/api/file/ih1ejbirT222rPNymaRP "Logo Title Text 1")
+![alt text](/img/2015-08-07_1635.png)
 
 **2.3** Press Continue
 
-![alt text](https://www.filepicker.io/api/file/udNn3rNvQICp42L7x9tT "Logo Title Text 1")
+![alt text](/img/2015-08-07_1637.png)
 
 **2.4** Press "Choose File..", select the "certSigningRequest" file you saved in step 1, press open, and then press "Generate".
 
-![alt text](https://www.filepicker.io/api/file/2Dt9T1IPROmopwwkyXIj "Logo Title Text 1")
+![alt text](/img/2015-08-07_1638.png)
 
 **2.5** Press Download to save your certificate
 
-![alt text](https://www.filepicker.io/api/file/34yniISTLK9MB98bDIBw "Logo Title Text 1")
+![alt text](/img/2015-08-07_1639.png)
 
-##3. Creating a Private Key
+##3. Creating a p12 File
 
 **3.1** Open the .cer file you downloaded in the last step by double clicking on it in Finder.
 
-![alt text](https://www.filepicker.io/api/file/zzb9Zc0ATPugb4nPC6RQ "Logo Title Text 1")
+![alt text](/img/2015-08-07_1642.png)
 
 **3.2** After a few seconds the "Keychain Access" program should pop up. Select Login > Keys then right click on your key in the list and select "Export"
 
-![alt text](https://www.filepicker.io/api/file/zGxZvc7USJuSbnZ7ER7V "Logo Title Text 1")
+![alt text](/img/2015-08-07_1644.png)
 
-**3.3** Give the file a unique name and press save. You will have an option to protect the file with a password. If you add a password, you need to enter this same password on Jeapie.
+**3.3** Give the file a unique name and press save. 
+You will have an option to protect the file with a password. 
+***Please don't protect this file with a password!***
 
 
-##4. Upload Your Push Certificate to Jeapie
+##3. Upload Your Push Certificate to Jeapie
 
-**4.1** From [Jeapie](https://jeapie.com), go to "Application Settings" and press Configure to the right of the Apple Settings.
+**3.1** At the step 2 "Push notification settings" please select the Production or Development APNS push services.
 
-![alt text](https://www.filepicker.io/api/file/zv82OLnLQ3CwH5VrzIeA "Logo Title Text 1")
+![push services](/img/2015-08-07_1615.png)
 
-**4.2** Select the .p12 you exported along with a password if you added one and press Save.
+**3.2** Select the .p12 you exported along without a password and press Save.
 
-![alt text](https://www.filepicker.io/api/file/y4tr93uRjiCaU9h6hmwc "Logo Title Text 1")
+![save p12 file](/img/2015-08-07_1617.png)
 
-**Important Requirement!**
+###**Congratulations! Jeapie is now setup to push out notifications to your app!**
 
-You must make sure `**Push Notifications**` are enabled on your provisioning profiles before building your app! Please fully follow Step 5 below or your users will NOT be subscribed.
-##5. Provisioning Profiles
-
-**5.1** On the left to go to All > Provisioning Profiles. Next find any that are for your app and delete them if they do not have Push Notifications in Enabled Services:.
-
-![alt text](https://www.filepicker.io/api/file/gc0o1oiYRQSC6tCNNHLf "Logo Title Text 1")
-
-**5.2** Recreate the ones you need by pressing the "+" button on the upper right.
-
-![alt text](https://www.filepicker.io/api/file/3ILHQj3jQoa8k6nVTphD "Logo Title Text 1")
-
-**5.3** Re-sync your Developer Account in Xcode by going to Xcode > Preferences... then click on the "View Details..." button. Lastly, click the refresh button on the bottom left of the popup. See [Apple's documentation](https://developer.apple.com/library/mac/recipes/xcode_help-accounts_preferences/articles/obtain_certificates_and_provisioning_profiles.html) for more detailed instructions.
-
-**Congratulations! Jeapie is now setup to push out notifications to your app!**
-
-Next, install the Jeapie SDK in your app.
-* Next step for [Native iOS](iOS-Native-SDK-Installation.md)
-
-**TROUBLESHOOTING**
-
-If you are running into any issues you can try troubleshooting them with our [Common Problems Guide]().
+Next, install the Jeapie SDK in your app [iOS Native SDK Installation](iOS-Native-SDK-Installation.md)
