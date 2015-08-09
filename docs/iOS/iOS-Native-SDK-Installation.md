@@ -3,7 +3,7 @@
 ###1. Download latest Jeapie iOS sdk from github
 [https://github.com/Jeapie/jeapie-ios](https://github.com/Jeapie/jeapie-ios)
 
-###2. Copy folder `jeapie` into root of your ios mobile app
+###2. Copy `jeapie` folder into root of your ios mobile app
 
 ###3. Select "Build Phases" and go to "Link Binary With Libraries".
 
@@ -21,7 +21,7 @@ You should see jeapie-sdk-x.x.x.a library
 
 ![alt text](/img/2015-08-07_1656.png)
 
-**5.2** Take `APP_KEY` and `APP_SECRET` keys from Step 3 *Add Jeapie sdk to your Mobile Application* in Jeapie Dashboard.
+**5.2** Take `APP_KEY` and `APP_SECRET` keys from Step 3 *"Add Jeapie sdk to your Mobile Application"* in Jeapie Dashboard.
 
 ![alt text](/img/2015-08-07_1700.png)
 
@@ -39,15 +39,15 @@ You should see jeapie-sdk-x.x.x.a library
 
 ![alt text](/img/2015-08-07_1653.png)
 
-###6. Import Jeapie header file in AppDelegate.m
+###6. Import Jeapie header file to AppDelegate.m
 
 ```objective-c
 #import "jeapie/JBJeapieAPIService.h"
 ```
 
-***Warning!*** *Путь к JBJeapieAPIService.h зависит от того, куда вы сохранили папку `jeapie` в вашем проекте.*
+***Warning!*** *Warning! The path to JBJeapieAPIService.h depends on the location of jeapie folder in your project.*
 
-###7. Add a couple of lines in AppDelegate.m
+###7. Add a couple of lines to AppDelegate.m
 
 ```objective-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { 
@@ -83,5 +83,4 @@ You should see jeapie-sdk-x.x.x.a library
     [[JBJeapieAPIService sharedInstance] didReceiveRemoteNotification:userInfo];
 }
 ```
-
-###8. Next step use Jeapie SDK API 
+    

@@ -22,7 +22,7 @@
 #####**<a name="didRegisterForRemoteNotificationsWithDeviceToken">didRegisterForRemoteNotificationsWithDeviceToken</a>**
 
 Must be called from `didRegisterForRemoteNotificationsWithDeviceToken` <br>and `didFinishLaunchingWithOptions` in `AppDelegate.m`. 
-Register push device token in Jeapie Dashboard.
+Register device token in Jeapie Dashboard.
 
 ```Objective-C
 - (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)data;
@@ -56,7 +56,7 @@ Track open push for statistics.
 
 **Parameters**
 
-* **`NSDictionary*`** ***userInfo*** - contain push information.
+* **`NSDictionary*`** ***userInfo*** - contains  push information.
  
 **Example**
 
@@ -68,7 +68,7 @@ Track open push for statistics.
     NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     
     if (userInfo) {
-        // track push open
+        // track push opening
         [[JBJeapieAPIService sharedInstance] didReceiveRemoteNotification:userInfo];
     }
     
@@ -77,7 +77,7 @@ Track open push for statistics.
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    // track push open
+    // track push opening
     [[JBJeapieAPIService sharedInstance] didReceiveRemoteNotification:userInfo];
 }
 ```
@@ -87,7 +87,7 @@ Track open push for statistics.
 
 #####**<a name="setAlias">setAlias</a>**
 
-Set a alias(user identifier) for each user to target these users.
+Set an alias(user identifier) for each user to target these users.
 
 ```Objective-C
 - (void)setAlias:(NSString *)alias;
@@ -155,7 +155,7 @@ Set a user phone number for additional user targeting.
 
 Tags a user based on an app event of your choosing so that later you can 
 create segments on Jeapie to target these users. 
-Recommend using setTags over addTag if you need to set more than one tag on a user at a time.
+We recommend using setTags over addTag if you need to set more than one tag for a user at once.
 
 ```Objective-C
 - (void)addTag:(NSString *)tag;
@@ -177,7 +177,7 @@ Recommend using setTags over addTag if you need to set more than one tag on a us
 
 #####**<a name="setTags">setTags</a>**
 
-Tag a user based on an app event of your choosing so later 
+Tags a user based on an app event of your choosing so later 
 you can create segments on Jeapie to target these users. ***Remove all tags and set new array of tags.***
 
 ```Objective-C
@@ -259,7 +259,7 @@ Unsubscribe this device from push notifications.
 
 #####**<a name="subscribe">subscribe</a>**
 
-Subscribe this device for receive push notifications if this device was unsubscribed by `unsubcribe` method.
+Subscribe this device to push notifications if it was unsubscribed by `unsubcribe` method.
 
 ```Objective-C
 - (void)subscribe;
@@ -278,7 +278,7 @@ Subscribe this device for receive push notifications if this device was unsubscr
 #####**<a name="enableGeolocationWithInterval">enableGeolocationWithInterval</a>**
 
 Collect user coordinates for advanced user targeting. Geolocations collect with custom period in seconds 
-when mobile application has forengraund state.
+when mobile application has foreground state.
 
 If you have permission for background geolocation, please use `setLocation` method.
 
@@ -289,7 +289,7 @@ If you have permission for background geolocation, please use `setLocation` meth
 
 **Parameters**
 
-* **`NSTimeInterval`** ***interval*** - Interval in seconds. Please use more then 30 sec.
+* **`NSTimeInterval`** ***interval*** - Interval in seconds. Please use more than 30 sec.
 
 **Example**
 
@@ -343,7 +343,7 @@ Save user geolocation to Jeapie for advanced user targeting.
 
 #####**<a name="deliver">deliver</a>**
 
-Track push delivered. *By default we can't track push delivered, but can use this method 
+To track the push has been delivered. *By default we can't check whether push has been delivered, but can use this method 
 in specific cases for advanced statistics.*
 
 ```Objective-C
