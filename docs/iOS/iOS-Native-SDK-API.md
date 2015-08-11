@@ -343,8 +343,7 @@ Save user geolocation to Jeapie for advanced user targeting.
 
 #####**<a name="deliver">deliver</a>**
 
-To track the push has been delivered. *By default we can't check whether push has been delivered, but can use this method 
-in specific cases for advanced statistics.*
+To track the push has been delivered. *By default we can't track push notifications and check whether they have been delivered, but we can use this method in specific cases for advanced statistics.*
 
 ```Objective-C
 - (void)deliver:(NSString *)pushId;
