@@ -22,20 +22,9 @@ W3C Web Push Notifications are currently only supported by Chrome 42+
 </head>
 ```
 
-#2. Initialize Jeapie
+#2. Customize Jeapie (Optional)
 
-**3.1 Init with Jeapie Widget** 
-
-Call `Jeapie.push(["init"])` from a javascript file that is included in every page. Add param `createButton` with value `true`. If you want to update default text on widget add param `tooltipText` with you custom value.
-```javascript
-var Jeapie = Jeapie || [];
-Jeapie.push(["init", {"autoRegister":false, "createButton": true, "tooltipText": "YOUR CUSTOM TEXT"}]);
-```
-The interactive button will appear on your site. Click it to open a window in which you will be able to allow sending notifications.
-
-![Autoregister for users](/img/widget_example.png)
-
-**3.2 Init with your custom button.** 
+**3.1 Init with your custom button or event.** 
 
 Call `Jeapie.push(["init"])` from a javascript file that is included in every page. Create or use your button and update `YOUR_CUSTOM_BUTTON_ID` with your button id.
 

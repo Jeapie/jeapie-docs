@@ -24,16 +24,16 @@ If possible, we encourage you to migrate all your pages to HTTPS first, and then
 **2.1** Link `https://cdn.jeapie.com/jeapiejs/APP_KEY` and `manifest.json` to each page of your website by adding some code between `<head>` and `</head>` tags. Update `APP_KEY` with your Jeapie AppId.  Most likely, you will have to do it just once in the file, which helps to generate a layout of the site. The resulting HTML should look like this:
 ```HTML
 <head>
-	<script src="https://cdn.jeapie.com/jeapiejs/0e9b2d82456a5ad012714e981d972360" async></script>
+	<script src="https://cdn.jeapie.com/jeapiejs/APP_KEY" async></script>
 </head>
 ```
 Now user will see a window asking for permission to receive notifications from your site immediately after opening the page
 
 ![Autoregister for users](/img/https_autoregister.png)
 
-##3. Initialize Jeapie
+##3. Customize Jeapie (Optional)
 
-**3.1 Init with your custom button.** 
+**3.1 Your custom button or event.** 
 
 Call `Jeapie.push(["init"])` from a javascript file that is included in every page. Create or use your button and update `YOUR_CUSTOM_BUTTON_ID` with your button id
 ```javascript
@@ -56,17 +56,6 @@ window.onload = function(){
 The user will see a window asking for permission to receive notifications from your site immediately after clicking on the button.
 
 You can create your own logic and call `registerPush()` method.
-
-**3.2 Init with Jeapie Widget.** 
-
-Call `Jeapie.push(["init"])` from a javascript file that is included in every page. Add param `autoRegister` with value `false` and `createButton` with value `true`. If you want to update default text on widget add param `tooltipText` with you custom value.
-```javascript
-var Jeapie = Jeapie || [];
-Jeapie.push(["init", {"autoRegister":false, "createButton": true, "tooltipText": "YOUR CUSTOM TEXT"}]);
-```
-The interactive button will appear on your site. Click it to open a window in which you will be able to allow sending notifications
-
-![Autoregister for users](/img/widget_example.png)
 
 **Important**
 
