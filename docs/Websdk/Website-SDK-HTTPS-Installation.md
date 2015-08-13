@@ -21,56 +21,48 @@ If possible, we encourage you to migrate all your pages to HTTPS first, and then
 
 ##2. Include Required Files
 
-**2.1** Link `https://cdn.jeapie.com/jeapiejs/webpush.js` and `manifest.json` to each page of your website by adding some code between `<head>` and `</head>` tags.  Most likely, you will have to do it just once in the file, which helps to generate a layout of the site. The resulting HTML should look like this:
+**2.1** Link `https://cdn.jeapie.com/jeapiejs/APP_KEY` and `manifest.json` to each page of your website by adding some code between `<head>` and `</head>` tags. Update `APP_KEY` with your Jeapie AppId.  Most likely, you will have to do it just once in the file, which helps to generate a layout of the site. The resulting HTML should look like this:
 ```HTML
 <head>
-  <script src="https://cdn.jeapie.com/jeapiejs/webpush.js" ></script>
-  <link rel="manifest" href="manifest.json">
+	<script src="https://cdn.jeapie.com/jeapiejs/0e9b2d82456a5ad012714e981d972360" async></script>
 </head>
 ```
-
-##3. Initialize Jeapie
-
-**3.1 Init with auto register.** 
-
-Call `Jeapie.init` from a javascript file that is included in every page. Update `0e9b2d82456a5ad012714e981d972360` with your Jeapie AppId. Add param `autoRegister` with value `true`.
-```javascript
-var Jeapie = Jeapie || [];
-
-Jeapie.init({"appId": "0e9b2d82456a5ad012714e981d972360", "autoRegister": true});
-```
-The user will see a window asking for permission to receive notifications from your site immediately after opening the page
+Now user will see a window asking for permission to receive notifications from your site immediately after opening the page
 
 ![Autoregister for users](/img/https_autoregister.png)
 
-**3.2 Init with your custom button.** 
+##3. Initialize Jeapie
 
-Call `Jeapie.init` from a javascript file that is included in every page. Update `0e9b2d82456a5ad012714e981d972360` with your Jeapie AppId. Create or use your button and update `YOUR_CUSTOM_BUTTON_ID` with your button id
+**3.1 Init with your custom button.** 
+
+Call `Jeapie.push(["init"])` from a javascript file that is included in every page. Create or use your button and update `YOUR_CUSTOM_BUTTON_ID` with your button id
 ```javascript
 var Jeapie = Jeapie || [];
-Jeapie.init({ "appKey" : "0e9b2d82456a5ad012714e981d972360"});
+Jeapie.push(["init", {"autoRegister":false}]);
 
-//Replace YOUR_CUSTOM_BUTTON_ID with your button id
-document.getElementById("YOUR_CUSTOM_BUTTON_ID").onclick = registerPush;
+window.onload = function(){
+	//Replace YOUR_CUSTOM_BUTTON_ID with your button id
+	document.getElementById("YOUR_CUSTOM_BUTTON_ID").onclick = registerPush;
 
-function registerPush() {
-    Jeapie.registerUserForPush(function(success){
-        if (!!success) {
-            //your custom action
-        }
-    });
+	function registerPush() {
+		Jeapie.push(["registerUserForPush", function(success){
+	        if (success) {
+	            //your custom action
+	        }
+	    }]);
+	}
 }
 ```
 The user will see a window asking for permission to receive notifications from your site immediately after clicking on the button.
 
 You can create your own logic and call `registerPush()` method.
 
-**3.3 Init with Jeapie Widget.** 
+**3.2 Init with Jeapie Widget.** 
 
-Call `Jeapie.init` from a javascript file that is included in every page. Update `0e9b2d82456a5ad012714e981d972360` with your Jeapie AppId. Add param `createButton` with value `true`.
+Call `Jeapie.push(["init"])` from a javascript file that is included in every page. Add param `autoRegister` with value `false` and `createButton` with value `true`. If you want to update default text on widget add param `tooltipText` with you custom value.
 ```javascript
 var Jeapie = Jeapie || [];
-Jeapie.init({ "appKey" : "0e9b2d82456a5ad012714e981d972360", "createButton": true});
+Jeapie.push(["init", {"autoRegister":false, "createButton": true, "tooltipText": "YOUR CUSTOM TEXT"}]);
 ```
 The interactive button will appear on your site. Click it to open a window in which you will be able to allow sending notifications
 
@@ -78,9 +70,9 @@ The interactive button will appear on your site. Click it to open a window in wh
 
 **Important**
 
-You must keep all the SDK files together. `https://cdn.jeapie.com/jeapiejs/webpush.js`, `push-worker.js` and `manifest.json` must be placed in the root directory of your site.
+You must keep all the SDK files together. `https://cdn.jeapie.com/jeapiejs/APP_KEY`, `push-worker.js` and `manifest.json` must be placed in the root directory of your site.
 
-Links to `https://cdn.jeapie.com/jeapiejs/webpush.js` and `manifest.json` must be added between `<head>` and `</head>` tags for every page on your website. Linking files this way allows us to be sure that:
+Link to `https://cdn.jeapie.com/jeapiejs/APP_KEY` must be added between `<head>` and `</head>` tags for every page on your website. Linking files this way allows us to be sure that:
 - any page can subscribe to notifications
 - any page can be opened from a notification (if set)
 - changes to the Google Registration id can be updated

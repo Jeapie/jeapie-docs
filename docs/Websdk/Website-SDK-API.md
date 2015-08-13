@@ -3,9 +3,10 @@
 
 The example assumes that you have the following code placed defined before calling Jeapie functions:
 ```HTML
-<script src="https://cdn.jeapie.com/jeapiejs/webpush.js" ></script>
+<script src="https://cdn.jeapie.com/jeapiejs/APP_KEY" async></script>
 <script>var Jeapie = Jeapie || [];</script>
 ```
+Update `APP_KEY` with your Jeapie AppId.
 
 ##List of Functions
 
@@ -16,7 +17,6 @@ The example assumes that you have the following code placed defined before calli
 * [removeTag](#removetag)
 * [removeAllTags](#removealltags)
 * [setAlias](#setalias)
-* [isPushManagerSupported](#ispushmanagersupported)
 * [getSubscription](#getsubscription)
 
 
@@ -27,10 +27,8 @@ This is the only required method that you need to call for setting up Jeapie to 
 
 * **Parameters**
  * **`JSON`** ***options***
-   * **`String`** ***appKey (Required) ***-Your Jeapie app id can be found on the settings page at jeapie.com.
    * **`Boolean`** ***autoRegister (Optional)*** - Automatically show browser prompt to accept notifications. You can pass in "false" to delay this pop-up and then call `registerUserForPush` to prompt them later.
    * **`Boolean`** ***createButton (Optional)*** -  It creates a default button that generates a window for receipt of the notifications, which appears after clicking
-   * **`Boolean`** ***subdomainName (Required for HTTP sites)*** 
    * **`String`** ***tooltipText (Optional, use only with createButton)*** - Default `One click subscription to our newsletter!`. Set the text that will be shown to users on a default button.
 
 **Example**
@@ -38,7 +36,7 @@ This is the only required method that you need to call for setting up Jeapie to 
 
 var Jeapie = Jeapie || [];
 
-Jeapie.init("appKey": "YOUR_JEAPIE_APP_KEY");
+Jeapie.push(["init", {"autoRegister":false}]);
 ```
 
 #####**registerUserForPush**
@@ -47,7 +45,7 @@ Call it when you want to prompt the user to accept push notifications. Only call
 
 **Example**
 ```javascript
-Jeapie.registerUserForPush(callback);
+Jeapie.push(["registerUserForPush", callback]);
 ```
 
 #####**addTag**
@@ -59,7 +57,7 @@ Tags a user based on an app event of your choosing so that later you can create 
 
 **Example**
 ```javascript
-Jeapie.addTag("value");
+Jeapie.push(["addTag", "value"]);
 ```
 
 #####**setTags**
@@ -71,7 +69,7 @@ Tag a user based on an app event of your choosing so later you can create segmen
 
 **Example**
 ```javascript
-Jeapie.setTags(["value1", "value2"]);
+Jeapie.push(["setTags", ["value1", "value2"] ]);
 ```
 
 #####**removeTag**
@@ -83,7 +81,7 @@ Deletes a tag that was previously set for a user with `addTag` or `setTags`. Use
 
 **Example**
 ```javascript
-Jeapie.removeTag("value");
+Jeapie.push(["removeTag", "value"]);
 ```
 
 #####**removeAllTags**
@@ -92,7 +90,7 @@ Deletes all tags that were previously set for a user with `addTag` or `setTags`.
 
 **Example**
 ```javascript
-Jeapie.removeAllTags();
+Jeapie.push(["removeAllTags"]);
 ```
 
 #####**setAlias**
@@ -104,15 +102,7 @@ Set a alias(user identifier) for each user of [jeapie.com](https://jeapie.com) t
 
 **Example**
 ```javascript
-Jeapie.setAlias("value");
-```
-
-#####**isPushManagerSupported**
-
-Returns "true" If the browser of current viewer of the page supports push notifications.
-
-```javascript
-Jeapie.isPushManagerSupported();
+Jeapie.push(["setAlias", "value"]);
 ```
 
 #####**getSubscription**
@@ -121,10 +111,10 @@ Lets you retrieve the Google Registration ID. Your handler is called after the d
 
 **Example**
 ```javascript
-Jeapie.getSubscription(function (subscriptionId) {
+Jeapie.push(["getSubscription", function (subscriptionId) {
     if (subscriptionId) {
         console.log(subscriptionId);
     }
-});
+}]);
 ```
 

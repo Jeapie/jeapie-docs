@@ -15,26 +15,21 @@ W3C Web Push Notifications are currently only supported by Chrome 42+
 
 #1. Include Required JeapieSDK.js
 
-**1.1** Include `https://cdn.jeapie.com/jeapiejs/webpush.js` in the the `<head>` HTML tag of each of your website pages. The best way is to add it to the code that generates the layout for each of your webpages. The resulting HTML should look like this:
+**1.1** Include `https://cdn.jeapie.com/jeapiejs/APP_KEY` in the the `<head>` HTML tag of each of your website pages. Update `APP_KEY` with your Jeapie AppId. The best way is to add it to the code that generates the layout for each of your webpages. The resulting HTML should look like this:
 ```HTML
 <head>
-  <script src="https://cdn.jeapie.com/jeapiejs/webpush.js"></script>
+	<script src="https://cdn.jeapie.com/jeapiejs/c98ddb5b4e54032b1f012127a3c5aec3" async> </script>
 </head>
 ```
 
 #2. Initialize Jeapie
 
-Call `Jeapie.init` from a javascript file that is included in every page.
-
-* Update `0e9b2d82456a5ad012714e981d972360` with your Jeapie AppId.
-* Update `jeapie` with the name value you entered in our dashboard.
-
 **3.1 Init with Jeapie Widget** 
 
-Call `Jeapie.init` from a javascript file that is included in every page. Update `0e9b2d82456a5ad012714e981d972360` with your Jeapie AppId. Add param `createButton` with value `true`.
+Call `Jeapie.push(["init"])` from a javascript file that is included in every page. Add param `createButton` with value `true`. If you want to update default text on widget add param `tooltipText` with you custom value.
 ```javascript
 var Jeapie = Jeapie || [];
-Jeapie.init({ "appKey" : "0e9b2d82456a5ad012714e981d972360", "subdomainName": "jeapie","createButton": true});
+Jeapie.push(["init", {"autoRegister":false, "createButton": true, "tooltipText": "YOUR CUSTOM TEXT"}]);
 ```
 The interactive button will appear on your site. Click it to open a window in which you will be able to allow sending notifications.
 
@@ -42,18 +37,21 @@ The interactive button will appear on your site. Click it to open a window in wh
 
 **3.2 Init with your custom button.** 
 
-Call `Jeapie.init` from a javascript file that is included in every page. Update `0e9b2d82456a5ad012714e981d972360` with your Jeapie AppId. Create or use your button and update `YOUR_CUSTOM_BUTTON_ID` with your button id.
+Call `Jeapie.push(["init"])` from a javascript file that is included in every page. Create or use your button and update `YOUR_CUSTOM_BUTTON_ID` with your button id.
 
 ```javascript
 var Jeapie = Jeapie || [];
-Jeapie.init({ "appKey" : "0e9b2d82456a5ad012714e981d972360",  "subdomainName" : "jeapie" });
+Jeapie.push(["init", {"autoRegister":false}]);
 
-//Replace YOUR_CUSTOM_BUTTON_ID with your button id
-document.getElementById("YOUR_CUSTOM_BUTTON_ID").onclick = registerPush;
+window.onload = function() {
+	//Replace YOUR_CUSTOM_BUTTON_ID with your button id
+	document.getElementById("YOUR_CUSTOM_BUTTON_ID").onclick = registerPush;
 
-function registerPush() {
-    Jeapie.registerHttp();
+	function registerPush() {
+	    Jeapie.push(["registerHttp");
+	}
 }
+
 ```
 
 **That's It!**
