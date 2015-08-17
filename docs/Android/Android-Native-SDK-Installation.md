@@ -83,14 +83,6 @@ Example: "A1111111111"</p>
             android:value="A{PROJECT_NUMBER}"/>
 
 
-        <receiver android:name="com.jeapieLib.reciever.GCMReceiver">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
-                <category android:name="com.jeapieApp"/>
-            </intent-filter>
-        </receiver>
-
         <receiver android:name="com.jeapieLib.GCMReceiver">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
