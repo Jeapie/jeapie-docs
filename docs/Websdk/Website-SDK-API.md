@@ -17,8 +17,8 @@ Update `APP_KEY` with your Jeapie AppId.
 * [removeTag](#removetag)
 * [removeAllTags](#removealltags)
 * [setAlias](#setalias)
-* [getSubscription](#getsubscription)afterSubscription
-* [afterSubscription](#aftersubscription)isSubscribed
+* [getSubscription](#getsubscription)
+* [afterSubscription](#aftersubscription)
 * [isSubscribed](#issubscribed)
 
 ##Functions
