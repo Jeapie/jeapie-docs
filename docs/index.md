@@ -14,8 +14,7 @@
 * [Android Native SDK Overview](Android/Android-Native-SDK-Overview.md)
 * [Android - Generating a GCM Push Notification Key](Android/Android-Generating-a-GCM-Push-Notification-Key.md)
 * [Android Native SDK Installation](Android/Android-Native-SDK-Installation.md)
-* [Android Native SDK API](Android/Android-Native-SDK-API.md)
-* [Android Notification Customizations](Android/Android-Notification-Customizations.md)
+<!-- * [Android Native SDK API](Android/Android-Native-SDK-API.md) -->
 
 <h2>WEBSITES (Chrome, Yandex & Safari)</h2>
 
