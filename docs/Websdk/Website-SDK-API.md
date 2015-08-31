@@ -128,7 +128,7 @@ Jeapie.push(["getSubscription", function (subscriptionId) {
 
 #####**afterSubscription**
 
-Callback that is called after the device is successfully registered with Jeapie. Return `Google Registration ID`.
+Callback that is called after the device is successfully registered with Jeapie. Return `token`.
 
 **Example**
 ```javascript
