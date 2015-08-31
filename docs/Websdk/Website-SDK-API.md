@@ -17,8 +17,9 @@ Update `APP_KEY` with your Jeapie AppId.
 * [removeTag](#removetag)
 * [removeAllTags](#removealltags)
 * [setAlias](#setalias)
-* [getSubscription](#getsubscription)
-
+* [getSubscription](#getsubscription)afterSubscription
+* [afterSubscription](#aftersubscription)isSubscribed
+* [isSubscribed](#issubscribed)
 
 ##Functions
 #####**init**
@@ -45,6 +46,7 @@ Call it when you want to prompt the user to accept push notifications. Only call
 
 **Example**
 ```javascript
+var Jeapie = Jeapie || [];
 Jeapie.push(["registerUserForPush", callback]);
 ```
 
@@ -57,6 +59,7 @@ Tags a user based on an app event of your choosing so that later you can create 
 
 **Example**
 ```javascript
+var Jeapie = Jeapie || [];
 Jeapie.push(["addTag", "value"]);
 ```
 
@@ -69,6 +72,7 @@ Tag a user based on an app event of your choosing so later you can create segmen
 
 **Example**
 ```javascript
+var Jeapie = Jeapie || [];
 Jeapie.push(["setTags", ["value1", "value2"] ]);
 ```
 
@@ -81,6 +85,7 @@ Deletes a tag that was previously set for a user with `addTag` or `setTags`. Use
 
 **Example**
 ```javascript
+var Jeapie = Jeapie || [];
 Jeapie.push(["removeTag", "value"]);
 ```
 
@@ -90,6 +95,7 @@ Deletes all tags that were previously set for a user with `addTag` or `setTags`.
 
 **Example**
 ```javascript
+var Jeapie = Jeapie || [];
 Jeapie.push(["removeAllTags"]);
 ```
 
@@ -102,6 +108,7 @@ Set a alias(user identifier) for each user of [jeapie.com](https://jeapie.com) t
 
 **Example**
 ```javascript
+var Jeapie = Jeapie || [];
 Jeapie.push(["setAlias", "value"]);
 ```
 
@@ -111,10 +118,37 @@ Lets you retrieve the Google Registration ID. Your handler is called after the d
 
 **Example**
 ```javascript
+var Jeapie = Jeapie || [];
 Jeapie.push(["getSubscription", function (subscriptionId) {
     if (subscriptionId) {
         console.log(subscriptionId);
     }
+}]);
+```
+
+#####**afterSubscription**
+
+Callback that is called after the device is successfully registered with Jeapie. Return `Google Registration ID`.
+
+**Example**
+```javascript
+var Jeapie = Jeapie || [];
+Jeapie.push(["afterSubscription", function (token) {
+    console.log(token);
+    //Your action
+}]);
+```
+
+#####**isSubscribed**
+
+Shows if user give permission to send notifications. Return `true` or `false`
+
+**Example**
+```javascript
+var Jeapie = Jeapie || [];
+Jeapie.push(["isSubscribed", function (success) {
+    console.log(success);
+    //Your action
 }]);
 ```
 
