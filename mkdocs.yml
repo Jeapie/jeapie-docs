@@ -11,7 +11,7 @@ pages:
     - [Android/Android-Native-SDK-Overview.md, Android, Android Native SDK Overview]
     - [Android/Android-Generating-a-GCM-Push-Notification-Key.md, Android, Android - Generating a GCM Push Notification Key]
     - [Android/Android-Native-SDK-Installation.md, Android, Android Native SDK Installation]
-    #- [Android/Android-Native-SDK-API.md, Android, Android Native SDK API]
+    # - [Android/Android-Native-SDK-API.md, Android, Android Native SDK API]
     #- [Android/Android-Notification-Customizations.md, Android, Android Notification Customizations]
 
     - [Websdk/Website-SDK-Overview.md, Website sdk, Website SDK Overview]

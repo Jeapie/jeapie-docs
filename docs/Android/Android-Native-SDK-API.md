@@ -25,6 +25,26 @@
 
 #####**<a name="init">init</a>**
 
+Paste method the code into `Launch Activity`
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+		JeapieAPI.init(getApplicationContext());
+	}
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
 
 
 **Parameters**
@@ -34,7 +54,228 @@
 **Example**
 
 ```java
-JeapieAPI.init(getApplicationContext());
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
+```
+
+---
+<br><br>
+
+#####**<a name=""></a>**
+
+
+
+**Parameters**
+
+* **`context`** ***Context*** - .
+
+**Example**
+
+```java
+
 ```
 
 ---
