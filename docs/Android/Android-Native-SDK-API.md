@@ -1,9 +1,5 @@
 #Android Native SDK API
 
-##List of Constructors
-
-[Jeapie](#Jeapie)
-
 ##List of Methods
 
 * [init](#init)
@@ -16,266 +12,284 @@
 * [removeTags](#removeTags)
 * [unsubscribe](#unsubscribe)
 * [subscribe](#subscribe)
-* [enableGeolocationWithInterval](#enableGeolocationWithInterval)
-* [disableGeolocation](#disableGeolocation)
+* [startLocationTrackingService](#startLocationTrackingService)
 * [setLocation](#setLocation)
-* [deliver](#deliver)
+* [pushDelivered](#pushDelivered)
 
 ##Methods
 
 #####**<a name="init">init</a>**
 
-Paste method the code into `Launch Activity`
+Paste method the code into `Launch Activity` or into class extends `android.app.Application`.
+
+```java
+public static JeapieAPI init(Context context);
+```
 
 **Parameters**
 
-* **`context`** ***Context*** - .
+* **`context`** ***Context*** - Application context
+
+**Return**
+
+* **`JeapieAPI`** - JeapieAPI instance
 
 **Example**
 
 ```java
+@Override
+public class TestApp extends Application {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-		JeapieAPI.init(getApplicationContext());
-	}
+    public void onCreate() {
+        super.onCreate();
+            JeapieAPI.init(getApplicationContext());
+    }
+}
+```
+
+
+
+---
+<br><br>
+
+#####**<a name="setAlias">setAlias</a>**
+
+Set an alias(user identifier) for each user to target these users.
+
+```java
+public void setAlias(String alias);
+```
+
+**Parameters**
+
+* **`alias`** ***String*** - user alias (email or other account identifier).
+
+**Example**
+
+```java
+JeapieAPI.getInstance().setAlias("John Smith");
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="setPhone">setPhone</a>**
 
+Set a user phone number for additional user targeting.
 
+```java
+public void setPhoneNumber(String phone);
+```
 
 **Parameters**
 
-* **`context`** ***Context*** - .
+* **`phone`** ***String*** - user phone.
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().setPhoneNumber("380991111111");
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="setEmail">setEmail</a>**
 
+Set a user phone number for additional user targeting.
 
+```java
+public void setEmail(String email);
+```
 
 **Parameters**
 
-* **`context`** ***Context*** - .
+* **`email`** ***String*** - user email.
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().setEmail("login@example.com");
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="addTag">addTag</a>**
 
+Tags a user based on an app event of your choosing so that later you can 
+create segments on Jeapie to target these users. 
+We recommend using setTags over addTag if you need to set more than one tag for a user at once.
 
+```java
+public void addTag(String tag);
+```
 
 **Parameters**
 
-* **`context`** ***Context*** - .
+* **`tag`** ***String*** - tag name.
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().addTag("tag_name_1");
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="setTags">setTags</a>**
 
+Tags a user based on an app event of your choosing so later 
+you can create segments on Jeapie to target these users. ***Remove all tags and set new array of tags.***
 
+```java
+public void setTags(String[] tags);
+```
 
 **Parameters**
 
-* **`context`** ***Context*** - .
+* **`tags`** ***String[]*** - array of tags.
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().setTags(new String[]{"tag_name_1", "tag_name_2"});
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="removeTag">removeTag</a>**
 
+Deletes a tag that was previously set for a user with addTag or setTags. 
+Use removeAllTags if you need to delete all of them.
 
+```java
+public void removeTag(String tag);
+```
 
 **Parameters**
 
-* **`context`** ***Context*** - .
+* **`tag`** ***String*** - tag name.
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().removeTag("tag_name_1");
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="removeTags">removeTags</a>**
 
+Deletes all tags that were previously set for a user with addTag or setTags.
 
-
-**Parameters**
-
-* **`context`** ***Context*** - .
+```java
+public void removeTags();
+```
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().removeTags();
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="unsubscribe">unsubscribe</a>**
 
+Unsubscribe this device from push notifications.
 
-
-**Parameters**
-
-* **`context`** ***Context*** - .
+```java
+public void unsubscribe();
+```
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().unsubscribe();
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="subscribe">subscribe</a>**
 
+Subscribe this device to push notifications if it was unsubscribed by `unsubcribe` method.
 
-
-**Parameters**
-
-* **`context`** ***Context*** - .
+```java
+public void subscribe();
+```
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().subscribe();
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="startLocationTrackingService">startLocationTrackingService</a>**
 
+Collect user coordinates for advanced user targeting. Geolocations collect with custom period in seconds 
+when mobile application has foreground state.
 
-
-**Parameters**
-
-* **`context`** ***Context*** - .
+```java
+public void startLocationTrackingService();
+```
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().startLocationTrackingService();
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="setLocation">setLocation</a>**
 
+Save user geolocation to Jeapie for advanced user targeting.
 
+```java
+public void setLocation(Double[] longitudeLatitude);
+```
 
 **Parameters**
 
-* **`context`** ***Context*** - .
+* **`longitudeLatitude`** ***Double[]*** - array of longitude and latitude.
 
 **Example**
 
 ```java
-
+JeapieAPI.getInstance().setLocation(Double[]{45.678, 23.456})l
 ```
 
 ---
 <br><br>
 
-#####**<a name=""></a>**
+#####**<a name="pushDelivered">pushDelivered</a>**
 
-
-
-**Parameters**
-
-* **`context`** ***Context*** - .
-
-**Example**
+To track the push has been delivered. 
 
 ```java
-
+static void pushDelivered(String pushId, Context context);
 ```
 
----
-<br><br>
-
-#####**<a name=""></a>**
-
-
-
 **Parameters**
 
-* **`context`** ***Context*** - .
+* **`pushId`** ***String*** - id of push from push payload.
+* **`context`** ***Context*** - context of application.
 
 **Example**
 
 ```java
-
-```
-
----
-<br><br>
-
-#####**<a name=""></a>**
-
-
-
-**Parameters**
-
-* **`context`** ***Context*** - .
-
-**Example**
-
-```java
-
-```
-
----
-<br><br>
-
-#####**<a name=""></a>**
-
-
-
-**Parameters**
-
-* **`context`** ***Context*** - .
-
-**Example**
-
-```java
-
+final String pushId = intent.getStringExtra(MESSAGE_ID_EXTRA_FIELD);
+JeapieAPI.getInstance().pushDelivered(pushId, context);
 ```
 
 ---
