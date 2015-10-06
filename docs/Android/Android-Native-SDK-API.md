@@ -23,7 +23,7 @@
 Paste method the code into `Launch Activity` or into class extends `android.app.Application`.
 
 ```java
-public static JeapieAPI init(Context context);
+public JeapieAPI init(Context context);
 ```
 
 **Parameters**
