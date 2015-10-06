@@ -83,7 +83,7 @@ Example: "A1111111111"</p>
             android:value="A{PROJECT_NUMBER}"/>
 
 
-        <receiver android:name="com.jeapieLib.GCMReceiver">
+        <receiver android:name="com.jeapieLib.receiver.GCMReceiver">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
@@ -91,7 +91,7 @@ Example: "A1111111111"</p>
             </intent-filter>
         </receiver>
 
-        <receiver android:name="com.jeapieLib.InternetConnectionReceiver"
+        <receiver android:name="com.jeapieLib.receiver.InternetConnectionReceiver"
                   android:exported="false">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
@@ -107,18 +107,28 @@ Example: "A1111111111"</p>
 </application>
 ```
 
-**6.** Paste the code into "Launch Activity"
+**6.** Paste the code into class which extends class `Application`
 
 ```java
-JeapieAPI.init(getApplicationContext());
+public class TestApp extends Application {
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+            JeapieAPI.init(getApplicationContext());
+    }
+}
+```
 
+**7.** Paste the code into "Launch Activity"
+
+```java
 //tracking push opening
 Bundle bundle = getIntent().getExtras();
-JeapieAPI.getInstance().trackPushOpen(bundle);
+JeapieAPI.trackPushOpen(bundle);
 ```
 
 
-**7.** Now you can use jeapie sdk methods
+**8.** Now you can use jeapie sdk methods
 
 <!--* To see all available methods, see our [Android SDK API Documentation](Android-Native-SDK-API.md).-->
