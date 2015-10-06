@@ -1,4 +1,4 @@
-#Android Native SDK API
+#Android Native SDK API (2.1.x versions)
 
 ##List of Methods
 
@@ -57,7 +57,7 @@ public class TestApp extends Application {
 Set an alias(user identifier) for each user to target these users.
 
 ```java
-public void setAlias(String alias);
+public static void setAlias(String alias);
 ```
 
 **Parameters**
@@ -67,7 +67,7 @@ public void setAlias(String alias);
 **Example**
 
 ```java
-JeapieAPI.getInstance().setAlias("John Smith");
+JeapieAPI.setAlias("John Smith");
 ```
 
 ---
@@ -78,7 +78,7 @@ JeapieAPI.getInstance().setAlias("John Smith");
 Set a user phone number for additional user targeting.
 
 ```java
-public void setPhoneNumber(String phone);
+public static void setPhoneNumber(String phone);
 ```
 
 **Parameters**
@@ -88,7 +88,7 @@ public void setPhoneNumber(String phone);
 **Example**
 
 ```java
-JeapieAPI.getInstance().setPhoneNumber("380991111111");
+JeapieAPI.setPhoneNumber("380991111111");
 ```
 
 ---
@@ -99,7 +99,7 @@ JeapieAPI.getInstance().setPhoneNumber("380991111111");
 Set a user phone number for additional user targeting.
 
 ```java
-public void setEmail(String email);
+public static void setEmail(String email);
 ```
 
 **Parameters**
@@ -109,7 +109,7 @@ public void setEmail(String email);
 **Example**
 
 ```java
-JeapieAPI.getInstance().setEmail("login@example.com");
+JeapieAPI.setEmail("login@example.com");
 ```
 
 ---
@@ -122,7 +122,7 @@ create segments on Jeapie to target these users.
 We recommend using setTags over addTag if you need to set more than one tag for a user at once.
 
 ```java
-public void addTag(String tag);
+public static void addTag(String tag);
 ```
 
 **Parameters**
@@ -132,7 +132,7 @@ public void addTag(String tag);
 **Example**
 
 ```java
-JeapieAPI.getInstance().addTag("tag_name_1");
+JeapieAPI.addTag("tag_name_1");
 ```
 
 ---
@@ -144,7 +144,7 @@ Tags a user based on an app event of your choosing so later
 you can create segments on Jeapie to target these users. ***Remove all tags and set new array of tags.***
 
 ```java
-public void setTags(String[] tags);
+public static void setTags(String[] tags);
 ```
 
 **Parameters**
@@ -154,7 +154,7 @@ public void setTags(String[] tags);
 **Example**
 
 ```java
-JeapieAPI.getInstance().setTags(new String[]{"tag_name_1", "tag_name_2"});
+JeapieAPI.setTags(new String[]{"tag_name_1", "tag_name_2"});
 ```
 
 ---
@@ -166,7 +166,7 @@ Deletes a tag that was previously set for a user with addTag or setTags.
 Use removeAllTags if you need to delete all of them.
 
 ```java
-public void removeTag(String tag);
+public static void removeTag(String tag);
 ```
 
 **Parameters**
@@ -176,7 +176,7 @@ public void removeTag(String tag);
 **Example**
 
 ```java
-JeapieAPI.getInstance().removeTag("tag_name_1");
+JeapieAPI.removeTag("tag_name_1");
 ```
 
 ---
@@ -187,13 +187,13 @@ JeapieAPI.getInstance().removeTag("tag_name_1");
 Deletes all tags that were previously set for a user with addTag or setTags.
 
 ```java
-public void removeTags();
+public static void removeTags();
 ```
 
 **Example**
 
 ```java
-JeapieAPI.getInstance().removeTags();
+JeapieAPI.removeTags();
 ```
 
 ---
@@ -204,13 +204,13 @@ JeapieAPI.getInstance().removeTags();
 Unsubscribe this device from push notifications.
 
 ```java
-public void unsubscribe();
+public static void unsubscribe();
 ```
 
 **Example**
 
 ```java
-JeapieAPI.getInstance().unsubscribe();
+JeapieAPI.unsubscribe();
 ```
 
 ---
@@ -221,13 +221,13 @@ JeapieAPI.getInstance().unsubscribe();
 Subscribe this device to push notifications if it was unsubscribed by `unsubcribe` method.
 
 ```java
-public void subscribe();
+public static void subscribe();
 ```
 
 **Example**
 
 ```java
-JeapieAPI.getInstance().subscribe();
+JeapieAPI.subscribe();
 ```
 
 ---
@@ -239,13 +239,13 @@ Collect user coordinates for advanced user targeting. Geolocations collect with 
 when mobile application has foreground state.
 
 ```java
-public void startLocationTrackingService();
+public static void startLocationTrackingService();
 ```
 
 **Example**
 
 ```java
-JeapieAPI.getInstance().startLocationTrackingService();
+JeapieAPI.startLocationTrackingService();
 ```
 
 ---
@@ -256,7 +256,7 @@ JeapieAPI.getInstance().startLocationTrackingService();
 Save user geolocation to Jeapie for advanced user targeting.
 
 ```java
-public void setLocation(Double[] longitudeLatitude);
+public static void setLocation(Double[] longitudeLatitude);
 ```
 
 **Parameters**
@@ -266,7 +266,7 @@ public void setLocation(Double[] longitudeLatitude);
 **Example**
 
 ```java
-JeapieAPI.getInstance().setLocation(Double[]{45.678, 23.456})l
+JeapieAPI.setLocation(Double[]{45.678, 23.456})l
 ```
 
 ---
@@ -277,7 +277,7 @@ JeapieAPI.getInstance().setLocation(Double[]{45.678, 23.456})l
 To track the push has been delivered. 
 
 ```java
-static void pushDelivered(String pushId, Context context);
+static static void pushDelivered(String pushId, Context context);
 ```
 
 **Parameters**
@@ -289,7 +289,7 @@ static void pushDelivered(String pushId, Context context);
 
 ```java
 final String pushId = intent.getStringExtra(MESSAGE_ID_EXTRA_FIELD);
-JeapieAPI.getInstance().pushDelivered(pushId, context);
+JeapieAPI.pushDelivered(pushId, context);
 ```
 
 ---
