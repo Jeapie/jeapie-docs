@@ -34,8 +34,16 @@ Click the following link to read about [Jeapie authentication](Server-API-Overvi
             "banner": "http://example.com/banner.png"
         },
         
-        // iOS (in development). Optional
+        // iOS (production mode). Optional
         "ios": {
+            "badge": 5,
+            "sound": "file.wav", // or "default"
+            "category_id": "1", // iOS new feature
+            "content-available": 1
+        },
+        
+        // iOS (development mode). Optional
+        "ios_dev": {
             "badge": 5,
             "sound": "file.wav", // or "default"
             "category_id": "1", // iOS new feature
@@ -61,10 +69,8 @@ Click the following link to read about [Jeapie authentication](Server-API-Overvi
 
         // Safari related (in development). Optional
         "safari": { 
-            "title": "Title",
-            "action": "Click here",
-            "action_url": "http://example.com",
-            "ttl": 3600
+            "header": "Title",
+            "redirect_url": "http://example.com"
         },
 
         // Chrome related (in development). Optional
@@ -125,9 +131,38 @@ Click the following link to read about [Jeapie authentication](Server-API-Overvi
 | **redirect_url** *Optional* | **String** |
 | | The relative url which is opened after clicking on a push. <br>Example: `"redirect_url": "/example.html"` |
 
-##### iOS params *(In development)*
+##### iOS params *(All params are optional)*
+|           |                                |
+|----------:|:-------------------------------|
+| **badge** *Optional* | **int** |
+| |  Optional, integer. iOS application badge number. Example: `"badge": 1` |
+| **sound** *Optional* | **String** |
+| | Optional. Sound file name in the main bundle of application <br>Example: `"sound": "bingbong.aiff"` |
+| **category_id** *Optional* | **int** |
+| | Provide this key with a string value that represents the identifier property of the UIMutableUserNotificationCategory object you created to define custom actions. To learn more about using custom actions, see Using Notification Actions in iOS. |
+| **content-available** *Optional* | **int** |
+| | Provide this key with a value of 1 to indicate that new content is available. Including this key and value means that when your app is launched in the background or resumed, application:didReceiveRemoteNotification:fetchCompletionHandler: is called. |
 
-##### Safari params *(In development)*
+
+##### iOS_DEV params *(All params are optional)*
+|           |                                |
+|----------:|:-------------------------------|
+| **badge** *Optional* | **int** |
+| |  Optional, integer. iOS application badge number. Example: `"badge": 1` |
+| **sound** *Optional* | **String** |
+| | Optional. Sound file name in the main bundle of application <br>Example: `"sound": "bingbong.aiff"` |
+| **category_id** *Optional* | **int** |
+| | Provide this key with a string value that represents the identifier property of the UIMutableUserNotificationCategory object you created to define custom actions. To learn more about using custom actions, see Using Notification Actions in iOS. |
+| **content-available** *Optional* | **int** |
+| | Provide this key with a value of 1 to indicate that new content is available. Including this key and value means that when your app is launched in the background or resumed, application:didReceiveRemoteNotification:fetchCompletionHandler: is called. |
+
+##### Safari params *(All params are optional)*
+|           |                                |
+|----------:|:-------------------------------|
+| **header** *Optional* | **String** |
+| | Safari notification header (title). <br>Example: `"header": "Header text"` |
+| **redirect_url** *Optional* | **String** |
+| | The absolute url which is opened after clicking on a push. <br>Example: `"redirect_url": "http://example.com"` |
 
 ##### Audience *(Required)*
 |           |                                |
@@ -138,6 +173,8 @@ Click the following link to read about [Jeapie authentication](Server-API-Overvi
 | | Send to array of device (browser) tokens. Limit is 100 tokens. Example: <br> `"tokens": ["dec301908b9ba...8df85e57a58e40f96f", "523f4c2068674f1fe...2ba25cdc250a2a41"]` |
 | **aliases** | **Array<String>** |
 | | Array of device aliases set by sdk in mobile app or on web. Example: <br> `"aliases": ["own_id_device_1", "own_id_device_2", "own_id_device_3"]` |
+| **tags** | **Array<String>** |
+| | Array of tags set by sdk in mobile app or on web. Example: <br> `"tags": ["tag1", "tag2", "tag3"]` |
 
 
 ###Result Format
@@ -238,16 +275,16 @@ $pushDataString = json_encode($pushData);
           
 // post json request                                                                                                     
 $ch = curl_init('https://go.jeapie.com/api/v2/push.json'); 
-curl_setopt($ch, CURLOPT_USERPWD, $APP_KEY . ":" . $APP_SECRET);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+curl_setopt($ch, CURLOPT_USERPWD, $APP_KEY . ':' . $APP_SECRET);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');                                                                     
 curl_setopt($ch, CURLOPT_POSTFIELDS, $pushDataString);                                                                  
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5); 
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);                                                                  
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+curl_setopt($ch, CURLOPT_HTTPHEADER, [                                                                          
     'Content-Type: application/json',                                                                                
-    'Content-Length: ' . strlen($pushDataString))                                                                       
-);                                                                                                                   
+    'Content-Length: ' . strlen($pushDataString)
+]);                                                                                                                   
                                                                                                                      
 $result = curl_exec($ch);
 ```
