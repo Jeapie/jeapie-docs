@@ -19,10 +19,11 @@
 <h2>WEBSITES (Chrome, Yandex & Safari)</h2>
 
 * [Website SDK Overview](Websdk/Website-SDK-Overview.md)
-<!-- * [Website - Generating a GCM Push Notification Key](Websdk/Website-Generating-a-GCM-Push-Notification-Key.md) -->
 * [Website SDK HTTPS Installation](Websdk/Website-SDK-HTTPS-Installation.md)
 * [Website SDK HTTP Installation](Websdk/Website-SDK-HTTP-Installation.md)
 * [Website SDK API](Websdk/Website-SDK-API.md)
+* [Website - Generating your own GCM Push Notification Key](Websdk/Website-Generating-a-GCM-Push-Notification-Key.md)
+* [Website - Generating your own Safari Push Notification Certificate](Websdk/Generating-an-Safari-Push-Certificate.md)
 
 <h2>SERVER API</h2>
 

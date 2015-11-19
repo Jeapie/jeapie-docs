@@ -15,10 +15,11 @@ pages:
     #- [Android/Android-Notification-Customizations.md, Android, Android Notification Customizations]
 
     - [Websdk/Website-SDK-Overview.md, Website sdk, Website SDK Overview]
-    # - [Websdk/Website-Generating-a-GCM-Push-Notification-Key.md, Website sdk, Website - Generating a GCM Push Notification Key]
     - [Websdk/Website-SDK-HTTPS-Installation.md, Website sdk, Website SDK HTTPS Installation]
     - [Websdk/Website-SDK-HTTP-Installation.md, Website sdk, Website SDK HTTP Installation]
     - [Websdk/Website-SDK-API.md, Website sdk, Website SDK API]
+    - [Websdk/Website-Generating-a-GCM-Push-Notification-Key.md, Website sdk, Generating your own GCM Push Notification Key]
+    - [Websdk/Generating-an-Safari-Push-Certificate.md, Website sdk, Generating your own Safari Push Notification Certificate]
 
     - [API/Server-API-Overview.md, SERVER API, Server API Overview]
     #- [API/notifications-View-notifications.md, SERVER API, notifications (View notifications)]
